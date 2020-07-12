@@ -1,0 +1,20 @@
+@(form: Form[Login])(implicit request: Request[AnyContent], messagesProvider: MessagesProvider, messages: Messages)
+
+@main("Login time baby") {
+    <h2> Please log in:</h2>
+
+    <div>
+        <h3>
+        @if(request.session.get("loginError").isDefined) {
+            @messages(request.session.get("loginError").get.toString)
+        }
+        </h3>
+    </div>
+    <div>
+        @helper.form(routes.LoginController.submitLogin()) {
+            @helper.inputText(form("account"), '_label -> "", '_showConstraints -> false, 'id -> "account", 'placeholder -> "Email or Username", 'autocomplete -> "off")
+            @helper.inputPassword(form("password"), '_label -> "", '_showConstraints -> false, 'id -> "password", 'placeholder -> "Password", 'autocomplete -> "off")
+            <button class="submit" type="submit">Log in</button>
+        }
+    </div>
+}

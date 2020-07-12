@@ -1,0 +1,28 @@
+@()(implicit request:Request[AnyContent])
+
+<header style="position: absolute">
+    <nav>
+    <div>
+        @if(request.session.get("user").isEmpty) {
+            <ul class="login">
+                <li><a href="@routes.RegistrationController.showRegistration()">Register</a></li>
+                <li><a href="@routes.LoginController.showLogin()">Log in</a></li>
+            </ul>
+        } else {
+            <ul>
+                <li class="user">Logged in as: @request.session.get("user") </li>
+                <li class="logoutbutton"><a href="@routes.LoginController.logout()">Log out</a></li>
+            </ul>
+        }
+    </div>
+
+    <div style="text-align: center; float: top">
+        <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/">Page 1</a></li>
+        <li><a href="/">Page 2</a></li>
+        <li><a href="@routes.HomeController.about">About</a></li>
+        </ul>
+    </div>
+    </nav>
+</header>

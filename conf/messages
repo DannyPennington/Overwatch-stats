@@ -1,0 +1,10 @@
+# https://www.playframework.com/documentation/latest/ScalaI18N
+
+# Registration errors:
+
+error.emailInUse = Email is already in use
+error.userInUse = Username is already in use
+
+# Login errors:
+error.emailIncorrect = Email address or password was incorrect
+error.userIncorrect = Username or password was incorrect

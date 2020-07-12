@@ -1,0 +1,23 @@
+@(form: Form[Registration])(implicit messagesProvider: MessagesProvider, request:Request[AnyContent], messages: Messages)
+
+@main("Sign up!") {
+    <h2> Please create an account:</h2>
+    <div>
+
+        <h3>
+        @if(request.session.get("registrationError").isDefined) {
+            @messages(request.session.get("registrationError").get.toString)
+            }
+        </h3>
+    </div>
+
+    <div>
+        @helper.form(routes.RegistrationController.submitRegistration()) {
+            @helper.inputText(form("username"), '_label -> "", '_showConstraints -> false, 'id -> "username", 'placeholder -> "Username", 'autocomplete -> "off")
+            @helper.inputText(form("email"), '_label -> "", '_showConstraints -> false, 'id -> "email", 'placeholder -> "Email", 'autocomplete -> "off")
+            @helper.inputPassword(form("password"), '_label -> "", '_showConstraints -> false, 'id -> "password", 'placeholder -> "Password", 'autocomplete -> "off")
+
+            <button class="submit" id="submit" type="submit">Register</button>
+        }
+    </div>
+}

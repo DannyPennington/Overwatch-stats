@@ -1,0 +1,105 @@
+body {
+    font-family: 'Nunito', sans-serif;
+}
+header {
+    padding: 30px 0;
+    width: 95%;
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    text-decoration: none;
+}
+
+header nav ul li {
+    border: 2px solid black;
+    background-color: lightskyblue;
+    fill-opacity: 100%;
+    border-radius: 20px;
+    display: inline;
+    padding: 20px 20px;
+}
+
+header li a {
+    font-size: 1.5em;
+    color: black;
+    text-decoration: none;
+    -webkit-transition: 0.1s;
+    transition: 0.1s;
+}
+
+header li:hover {
+    background-color: deepskyblue;
+    font-size: 1.25em;
+    color: gray(150);
+    opacity: 0.8;
+}
+
+input[type=text], input[type=password] {
+    font-family: 'Nunito', sans-serif;
+    width: 25%;
+    padding: 12px 10px;
+    margin: 10px 0px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    transition: 0.25s;
+}
+
+input[type=text]:focus,input[type=password]:focus {
+    border: 5px solid lightskyblue;
+    margin:7px 0px;
+
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.submit {
+    width: 10%;
+    padding: 12px 10px;
+    margin-left: 40px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18pt;
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: #33b864;
+    -webkit-transition: 0.1s;
+    transition: 0.1s;
+}
+
+.submit:hover {
+    background-color: #11875d;
+    font-size: 20pt;
+
+}
+
+.login {
+    padding: 10px 10px;
+    border-radius: 15px
+}
+
+.logoutbutton {
+    padding: 10px 10px;
+    border-radius: 15px;
+    display: inline-block;
+
+}
+
+.user {
+    background-color: white;
+    border-color: white;
+    padding: 0 0;
+
+}
+
+.user:hover{
+    font-size: 1em;
+    color: black;
+    background-color: white;
+}
