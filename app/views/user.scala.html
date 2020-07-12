@@ -2,10 +2,16 @@
 
 @main("Search for profile") {
 
-    <h2> Please enter battle net username (including # number but with "-" instead of "#"</h2>
+    <h2> Please enter battle net username (including # number but with "-" instead of "#")</h2>
 
-    @helper.form(routes.ProfileController.getProfileData()) {
-    @helper.inputText(form("tag"), '_label -> "", '_showConstraints -> false, 'id -> "tag", 'placeholder -> "Example-1234", 'autocomplete -> "off")
-    <button class="submit" id="submit" type="submit">Get stats</button>
-}
+
+     <form action="/user" method="GET">
+         <input type="text" label="" id="tag" name="tag" placeholder="Example-1234" autocomplete="off" style="margin-left:40px"> <p></p>
+         <button class="submit" id="submit" type="submit">Get stats</button>
+     </form>
+
+
+
+
+
 }

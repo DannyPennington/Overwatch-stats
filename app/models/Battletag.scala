@@ -11,5 +11,4 @@ object Battletag {
       "tag" -> nonEmptyText,
     )(Battletag.apply)(Battletag.unapply)
   )
-
 }
