@@ -9,10 +9,9 @@ import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
-class RegistrationController @Inject()(val components: ControllerComponents,
+class RegistrationController @Inject()(val cc: ControllerComponents,
                                        val mongoService: MongoService)
-  extends AbstractController(components)
-    with play.api.i18n.I18nSupport{
+  extends AbstractController(cc) with play.api.i18n.I18nSupport{
 
   def reInnit(): Action[AnyContent] = Action.async { implicit request:Request[AnyContent] =>
     mongoService.reInnitUsers.map( _ => Ok(views.html.message("Reinitialised collection with admin user")))

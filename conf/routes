@@ -13,3 +13,5 @@ GET     /logout                     controllers.LoginController.logout
 GET     /login                      controllers.LoginController.showLogin()
 
 POST    /login                      controllers.LoginController.submitLogin()
+
+GET     /user                       controllers.ProfileController.getProfileData

@@ -9,9 +9,11 @@ import play.api.mvc._
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class LoginController @Inject()(val components: ControllerComponents, val mongoService: MongoService) extends AbstractController(components) with play.api.i18n.I18nSupport {
+class LoginController @Inject()(val cc: ControllerComponents,
+                                val mongoService: MongoService)
+  extends AbstractController(cc) with play.api.i18n.I18nSupport {
 
-  implicit def ec: ExecutionContext = components.executionContext
+  implicit def ec: ExecutionContext = cc.executionContext
 
   def logout():Action[AnyContent] = Action {implicit request: Request[AnyContent] =>
     Redirect(routes.HomeController.index()).withNewSession
