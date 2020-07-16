@@ -15,7 +15,7 @@ header nav ul {
 
 header nav ul li {
     border: 2px solid black;
-    background-color: lightskyblue;
+    background-color: #ff9933;
     fill-opacity: 100%;
     border-radius: 20px;
     display: inline;
@@ -31,10 +31,8 @@ header li a {
 }
 
 header li:hover {
-    background-color: deepskyblue;
+    background-color: #ff6600;
     font-size: 1.25em;
-    color: gray(150);
-    opacity: 0.8;
 }
 
 input[type=text], input[type=password] {

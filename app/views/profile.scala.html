@@ -6,17 +6,20 @@
 @main("Your profile") {
     <div >
         <div name="player_details" style="overflow: hidden; display: inline-block">
-            <img src='@{stripQuotes(json.\("icon").get.toString)}'>
-            <p style="overflow: hidden; display: inline-block; font-size:30pt; padding-left: 30px;">
+            <img src='@{stripQuotes(json.\("icon").get.toString)}' style="width: 200px">
+            <p style="overflow: hidden; display: inline-block; font-size:40pt; padding-left: 2%; position: relative; bottom: 50px;">
                 @{stripQuotes(json.\("name").get.toString)}
             </p>
-            <div style="overflow: hidden; display: inline-block">
-                <img src='@{stripQuotes(json.\("levelIcon").get.toString)}' style="z-index: -1">
-                <img src='@{stripQuotes(json.\("prestigeIcon").get.toString)}' style="position: relative; left: -260px; overflow:hidden">
-                <img src='@{stripQuotes(json.\("ratingIcon").get.toString)}' style="position: relative; left: -260px; overflow:hidden">
+            <p style="overflow: hidden; display: inline-block; font-size:40pt; position: relative; bottom: -50px; left: -15%;">
+                @{json.\("level").get.toString}
+            </p>
+            <div style="display: inline-block">
+                <img src='@{stripQuotes(json.\("levelIcon").get.toString)}' style="z-index: -1; position: relative; left: -15%">
+                <img src='@{stripQuotes(json.\("prestigeIcon").get.toString)}' style="position: relative; left: -48.5%; overflow:hidden">
+                <img src='@{stripQuotes(json.\("ratingIcon").get.toString)}' style="position: relative; left: -45%; overflow:hidden">
             </div>
 
-            <p style="font-size: 20pt; overflow: hidden; display: inline-block; position: relative; left: -425px;">
+            <p style="font-size: 20pt; display: inline-block;">
                 @{stripQuotes(json.\("rating").get.toString)}
             </p>
         </div>

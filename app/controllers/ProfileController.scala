@@ -35,8 +35,8 @@ class ProfileController @Inject()(val cc: ControllerComponents,
     "levelIcon": "https://blzgdapipro-a.akamaihd.net/game/playerlevelrewards/0x0250000000000951_Border.png",
     "prestige": 2,
     "prestigeIcon": "https://blzgdapipro-a.akamaihd.net/game/playerlevelrewards/0x0250000000000951_Rank.png",
-    "rating": "1896",
-    "ratingIcon": "https://blzgdapipro-a.akamaihd.net/game/rank-icons/season-2/rank-2.png",
+    "rating": "9999",
+    "ratingIcon": "https://blzgdapipro-a.akamaihd.net/game/rank-icons/season-2/rank-7.png",
     "gamesWon": 734
     }"""
   }
