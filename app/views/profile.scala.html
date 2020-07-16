@@ -1,0 +1,30 @@
+@import play.api.libs.json.JsValue
+@import services.StripperService.stripQuotes
+
+@(json: JsValue)(implicit messagesProvider: MessagesProvider, request:Request[AnyContent])
+
+@main("Your profile") {
+    <div >
+        <div name="player_details" style="overflow: hidden; display: inline-block">
+            <img src='@{stripQuotes(json.\("icon").get.toString)}'>
+            <p style="overflow: hidden; display: inline-block; font-size:30pt; padding-left: 30px;">
+                @{stripQuotes(json.\("name").get.toString)}
+            </p>
+            <div style="overflow: hidden; display: inline-block">
+                <img src='@{stripQuotes(json.\("levelIcon").get.toString)}' style="z-index: -1">
+                <img src='@{stripQuotes(json.\("prestigeIcon").get.toString)}' style="position: relative; left: -260px; overflow:hidden">
+                <img src='@{stripQuotes(json.\("ratingIcon").get.toString)}' style="position: relative; left: -260px; overflow:hidden">
+            </div>
+
+            <p style="font-size: 20pt; overflow: hidden; display: inline-block; position: relative; left: -425px;">
+                @{stripQuotes(json.\("rating").get.toString)}
+            </p>
+        </div>
+
+        <div name="player_stats">
+
+        </div>
+    </div>
+
+
+}

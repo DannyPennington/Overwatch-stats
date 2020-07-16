@@ -22,7 +22,7 @@ class APIConnector @Inject()(ws: WSClient,
       .withRequestTimeout(10000.millis).get()
 
     val result = request.map { response =>
-      response.json.toString()
+      response.json
     }
 
     result
