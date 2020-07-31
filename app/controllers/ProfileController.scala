@@ -24,23 +24,28 @@ class ProfileController @Inject()(val cc: ControllerComponents,
     Battletag.BattletagForm.bindFromRequest().fold( formWithErrors =>
     Future.successful(BadRequest(views.html.user(formWithErrors))),
     battletag =>
-      showProfileData()
+      //showProfileData(battletag)
+      stubProfileData(battletag)
     )
   }
 
-  def showProfileData()(implicit request:Request[AnyContent]): Future[Result] = {
+  def stubProfileData(battletag: Battletag)(implicit request:Request[AnyContent]): Future[Result] = {
     saveStats(testJson)
     Future.successful(Ok(views.html.profile(testJson))) // TEMPORARILY USING TEST JSON TO AVOID SPAM CALLING API WHILE DEVELOPING
+  }
 
-  //connector.getProfile(battletag.tag).map { jsonResponse =>
-    //  Ok(views.html.profile(jsonResponse))
-
+  def showProfileData(battletag: Battletag)(implicit request:Request[AnyContent]): Future[Result] = {
+    connector.getProfile(battletag.tag).map { jsonResponse =>
+      saveStats(jsonResponse)
+      Ok(views.html.profile(jsonResponse))
+    }
   }
 
   def saveStats(data: JsValue): Unit = {
     val totalGames: Int = data.\("competitiveStats").get.\("games").get.\("played").get.toString.toInt
     val wins : Int = data.\("competitiveStats").get.\("games").get.\("won").get.toString.toInt
-    val stats = Stats("Username placeholder", // TODO implement actual username, get from like session or from the battletag they search for
+    val stats = Stats(
+      stripQuotes(data.\("name").get.toString()),
       stripQuotes(data.\("rating").get.toString()).toInt,
       wins,
       totalGames)
