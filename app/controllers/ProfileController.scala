@@ -1,10 +1,11 @@
 package controllers
 
 import javax.inject.Inject
-import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents, Request}
+import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents, Request, Result}
 import connectors.APIConnector
-import models.Battletag
+import models.{Battletag, Stats}
 import play.api.libs.json.{JsValue, Json}
+import services.StripperService.stripQuotes
 
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -19,13 +20,32 @@ class ProfileController @Inject()(val cc: ControllerComponents,
     Ok(views.html.user(Battletag.BattletagForm))
   }
 
-  def getProfileData(): Action[AnyContent] = Action.async {implicit request:Request[AnyContent] =>
+  def getProfileData(): Action[AnyContent] = Action.async { implicit request:Request[AnyContent] =>
     Battletag.BattletagForm.bindFromRequest().fold( formWithErrors =>
     Future.successful(BadRequest(views.html.user(formWithErrors))),
-    battletag => Future.successful(Ok(views.html.profile(testJson))) // TEMPORARILY USING TEST JSON TO AVOID SPAM CALLING API WHILE DEVELOPING
-    //connector.getProfile(battletag.tag).map { res =>
-    //  Ok(views.html.profile(res))
+    battletag =>
+      showProfileData()
     )
+  }
+
+  def showProfileData()(implicit request:Request[AnyContent]): Future[Result] = {
+    saveStats(testJson)
+    Future.successful(Ok(views.html.profile(testJson))) // TEMPORARILY USING TEST JSON TO AVOID SPAM CALLING API WHILE DEVELOPING
+
+  //connector.getProfile(battletag.tag).map { jsonResponse =>
+    //  Ok(views.html.profile(jsonResponse))
+
+  }
+
+  def saveStats(data: JsValue): Unit = {
+    val totalGames: Int = data.\("competitiveStats").get.\("games").get.\("played").get.toString.toInt
+    val wins : Int = data.\("competitiveStats").get.\("games").get.\("won").get.toString.toInt
+    val stats = Stats("Username placeholder", // TODO implement actual username, get from like session or from the battletag they search for
+      stripQuotes(data.\("rating").get.toString()).toInt,
+      wins,
+      totalGames)
+
+    mongoService.addStats(stats)
   }
 
   val testJson: JsValue = Json.parse{"""{

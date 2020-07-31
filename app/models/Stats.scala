@@ -4,12 +4,13 @@ import java.time.LocalDateTime
 
 import play.api.libs.json.{JsValue, Json, OFormat}
 
-case class Stats(compScore: Int, winLoss: Int, gamesPlayed: Int, dateTime: LocalDateTime = LocalDateTime.now()) {
+case class Stats(username: String, compScore: Int, wins: Int, gamesPlayed: Int, dateTime: LocalDateTime = LocalDateTime.now()) {
 
   def toJson: JsValue = Json.parse(
     s"""{
+      | "User": $username,
       | "Score": $compScore,
-      | "Win ratio": $winLoss,
+      | "Wins": $wins,
       | "Total games": $gamesPlayed,
       | "Timestamp": "${dateTime.toString}"
       | }

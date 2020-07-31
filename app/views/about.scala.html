@@ -1,24 +1,9 @@
 @()(implicit request: Request[AnyContent])
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>About us</title>
-    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
-    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/Pierre.jpg")">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-</head>
+@main("About") {
+    <h1>This is my about page</h1>
 
-@header.apply()
-
-<body style="background-image: url(@routes.Assets.versioned("images/dva.jpg"));  background-size:cover; ">
-    <div style="padding-top: 10%; padding-left: 2.5%;">
-
-        <h1 style="color: white; text-align: center;">Nothing to see here</h1>
-
-    </div>
-</body>
-
-</html>
+    <p>So far it's empty</p>
+}
 
 

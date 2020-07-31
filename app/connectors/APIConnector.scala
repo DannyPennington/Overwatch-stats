@@ -24,7 +24,6 @@ class APIConnector @Inject()(ws: WSClient,
     val result = request.map { response =>
       response.json
     }
-
     result
     }
 

@@ -23,6 +23,7 @@ class MongoService @Inject()(
                             ) extends ReactiveMongoComponents with Logging {
 
   def userCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("users"))
+  def statsCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("stats"))
 
   def userSearchHelper(category: String = "email", search: String): Future[List[User]] = {
     userCollection.map {
@@ -87,4 +88,9 @@ class MongoService @Inject()(
       case e if emailRegex.findFirstMatchIn(e).isDefined  => true
       case _                                              => false
     }}
+
+  def addStats(stats: Stats): Future[WriteResult] = {
+    logger.info(s"[MongoService][addStats] New set of stats stored for user ${stats.username}")
+    statsCollection.flatMap(_.insert.one(stats))
+  }
 }
