@@ -1,10 +1,10 @@
 package controllers
 
-import javax.inject._
-import play.api.mvc._
+import javax.inject.Inject
+import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents, Request}
 
-@Singleton
-class HomeController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
+class HomeController @Inject()(val controllerComponents: ControllerComponents)
+  extends BaseController {
 
   def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     if (request.session.get("user").isEmpty) {

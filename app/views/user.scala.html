@@ -1,0 +1,17 @@
+@(form: Form[Battletag])(implicit messagesProvider: MessagesProvider, request:Request[AnyContent])
+
+@main("Search for profile") {
+
+    <h2> Please enter battle net username (including # number but with "-" instead of "#")</h2>
+
+
+     <form action="/user" method="GET">
+         <input type="text" label="" id="tag" name="tag" placeholder="Example-1234" autocomplete="off" style="margin-left:40px"> <p></p>
+         <button class="submit" id="submit" type="submit">Get stats</button>
+     </form>
+
+
+
+
+
+}
