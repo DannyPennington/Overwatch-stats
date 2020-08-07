@@ -23,6 +23,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents,
 
   }
 
+  /*
   def python(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     pythonConnector.callScript("Let's-throw-some-text-in-here")
     val file = Source.fromFile("test.txt")
@@ -30,4 +31,17 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents,
     file.close()
     Ok(views.html.message(text))
   }
+  */
+
+  def image(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    val arg1 = "3"
+    val arg2 = "6"
+
+    pythonConnector.callScript(arg1, arg2)
+    val path = s"images/1_$arg1,2_$arg2.png"
+
+    Ok(views.html.image(path))
+  }
+
+
 }
