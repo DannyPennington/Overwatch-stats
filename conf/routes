@@ -16,6 +16,4 @@ POST    /login                      controllers.LoginController.submitLogin()
 
 GET     /user                       controllers.ProfileController.getProfileData
 
-# GET     /python                     controllers.HomeController.python
-
 GET     /image                      controllers.HomeController.image

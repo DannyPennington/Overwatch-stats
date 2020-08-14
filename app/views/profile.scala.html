@@ -1,28 +1,38 @@
 @import play.api.libs.json.JsValue
 @import services.StripperService.stripQuotes
 
-@(json: JsValue)(implicit messagesProvider: MessagesProvider, request:Request[AnyContent])
+@(json: JsValue, roles: Array[Int])(implicit messagesProvider: MessagesProvider, request:Request[AnyContent])
 
 @main("Your profile") {
-    <div >
+    <div style="overflow: hidden; display: inline-block">
         <div name="player_details" style="overflow: hidden; display: inline-block">
             <img src='@{stripQuotes(json.\("icon").get.toString)}' style="width: 200px">
-            <p style="overflow: hidden; display: inline-block; font-size:40pt; padding-left: 2%; position: relative; bottom: 50px;">
+            <img src='@{stripQuotes(json.\("levelIcon").get.toString)}' style="z-index: -1; position: relative; overflow:hidden;">
+            <img src='@{stripQuotes(json.\("prestigeIcon").get.toString)}' style="z-index: -2; position: relative; left: -20.66%; overflow:hidden">
+            <!-- <img src='@{stripQuotes(json.\("ratingIcon").get.toString)}' style="position: relative; left: -45%; overflow:hidden"> -->
+            <p style="overflow: hidden; display: inline; font-size:40pt; position: relative; bottom: 75px; left: -22.5% ">
                 @{stripQuotes(json.\("name").get.toString)}
             </p>
-            <p style="overflow: hidden; display: inline-block; font-size:40pt; position: relative; bottom: -50px; left: -15%;">
+            <p style="overflow: hidden; display: inline; font-size:40pt; position: relative; bottom: 75px; left: -20% ">
                 @{json.\("level").get.toString}
             </p>
-            <div style="display: inline-block">
-                <img src='@{stripQuotes(json.\("levelIcon").get.toString)}' style="z-index: -1; position: relative; left: -15%">
-                <img src='@{stripQuotes(json.\("prestigeIcon").get.toString)}' style="position: relative; left: -48.5%; overflow:hidden">
-                <img src='@{stripQuotes(json.\("ratingIcon").get.toString)}' style="position: relative; left: -45%; overflow:hidden">
-            </div>
-
-            <p style="font-size: 20pt; display: inline-block;">
-                @{stripQuotes(json.\("rating").get.toString)}
-            </p>
         </div>
+
+        <div style="overflow: hidden; display: block">
+            @for(i <- roles) {
+            <div style="font-size: 20pt; display: inline-block;">
+            <h3>
+                Role: @{stripQuotes(json.\("ratings").\(i).\("role").get.toString.capitalize)}
+            </h3>
+                @{stripQuotes(json.\("ratings").\(i).\("level").get.toString)}
+                <img src='@{stripQuotes(json.\("ratings").\(i).\("roleIcon").get.toString)}'/>
+                <img src='@{stripQuotes(json.\("ratings").\(i).\("rankIcon").get.toString)}'/>
+            </div>
+            }
+
+        </div>
+
+
 
         <h2>Now I'm just gonna dump all the stats here for now, have fun!</h2>
         <div name="player_stats">

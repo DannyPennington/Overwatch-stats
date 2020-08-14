@@ -32,8 +32,15 @@ class ProfileController @Inject()(configuration: Configuration,
 
   def showProfileData(battletag: Battletag)(implicit request: Request[AnyContent]): Future[Result] = {
     connector.getProfile(battletag.tag).map { jsonResponse =>
-      saveStats(jsonResponse)
-      Ok(views.html.profile(jsonResponse))
+      if (configuration.underlying.getBoolean("behavior.stub")) {saveStats(jsonResponse)}
+      var count: Int = 0
+      if (jsonResponse.\("ratings").\(0).isDefined) { count += 1 }
+      if (jsonResponse.\("ratings").\(1).isDefined) { count += 1 }
+      if (jsonResponse.\("ratings").\(2).isDefined) { count += 1 }
+
+      val nums = Array.range(0, count)
+
+      Ok(views.html.profile(jsonResponse, nums))
     }
   }
 
