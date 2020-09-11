@@ -15,3 +15,5 @@ GET     /login                      controllers.LoginController.showLogin()
 POST    /login                      controllers.LoginController.submitLogin()
 
 GET     /user                       controllers.ProfileController.getProfileData
+
+GET     /image                      controllers.HomeController.image

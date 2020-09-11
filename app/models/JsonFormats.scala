@@ -1,6 +1,6 @@
 package models
 
-import play.api.libs.json.OFormat
+import play.api.libs.json.{JsValue, OFormat}
 
 object JsonFormats {
 

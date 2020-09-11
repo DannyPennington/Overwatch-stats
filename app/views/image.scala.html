@@ -1,0 +1,8 @@
+@(imagePath:String)(implicit request: Request[AnyContent])
+
+@main("Image") {
+    <div>
+        <img src='@routes.Assets.versioned(s"${imagePath}")' width="60%">
+    </div>
+
+}
